@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  left_right: 1
+  front_back: 1
+  depth: 1
+
+two:
+  left_right: 1
+  front_back: 1
+  depth: 1

@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140304211202) do
+ActiveRecord::Schema.define(version: 20140304211750) do
+
+  create_table "bowls", force: true do |t|
+    t.integer  "left_right"
+    t.integer  "front_back"
+    t.integer  "depth"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "bottom_grid"
+    t.boolean  "colander"
+    t.integer  "specsheet_id"
+  end
 
   create_table "specsheets", force: true do |t|
     t.string   "name"
