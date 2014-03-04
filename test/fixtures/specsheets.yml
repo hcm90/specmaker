@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  bowl: MyString
+  installation: MyString
+  corner_radius: MyString
+  drain_location: MyString
+  drain_size: MyString
+  divider: MyString
+
+two:
+  name: MyString
+  bowl: MyString
+  installation: MyString
+  corner_radius: MyString
+  drain_location: MyString
+  drain_size: MyString
+  divider: MyString
