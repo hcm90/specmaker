@@ -14,7 +14,13 @@ class SpecsheetsController < ApplicationController
 	def create
 		@specsheet = Specsheet.new(specsheet_params)
 		if @specsheet.save
-			redirect_to specsheet_url(@specsheet)
+			@specsheet.number_of_bowls.times do |bowl|
+	 		@bowl = @specsheet.bowls.build
+	 		@bowl.save
+	 		#@bowl = Bowl.new
+	 		@bowl.specsheet_id = @specsheet.id
+	 	end
+			redirect_to new_specsheet_bowl_path(@specsheet)
 		else
 			render :new
 		end
@@ -41,7 +47,7 @@ class SpecsheetsController < ApplicationController
 
 	private
 	def specsheet_params
-		params.require(:specsheet).permit(:name, :bowl, :installation, :corner_radius, :drain_location, :drain_size, :divider)
+		params.require(:specsheet).permit(:name, :number_of_bowls, :installation, :corner_radius, :drain_location, :drain_size, :divider)
 	end
 
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140304211750) do
+ActiveRecord::Schema.define(version: 20140305210642) do
 
   create_table "bowls", force: true do |t|
     t.integer  "left_right"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20140304211750) do
 
   create_table "specsheets", force: true do |t|
     t.string   "name"
-    t.string   "bowl"
+    t.integer  "number_of_bowls", limit: 255
     t.string   "installation"
     t.string   "corner_radius"
     t.string   "drain_location"
