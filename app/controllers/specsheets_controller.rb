@@ -20,7 +20,7 @@ class SpecsheetsController < ApplicationController
 	 		#@bowl = Bowl.new
 	 		@bowl.specsheet_id = @specsheet.id
 	 	end
-			redirect_to new_specsheet_bowl_path(@specsheet)
+			redirect_to specsheet_specsheet_steps_path(@specsheet)#new_specsheet_bowl_path(@specsheet)
 		else
 			render :new
 		end
@@ -33,7 +33,7 @@ class SpecsheetsController < ApplicationController
 	def update
 		@specsheet = Specsheet.find(params[:id])
 		if @specsheet.update_attributes(specsheet_params)
-			redirect_to specsheet_path(@specsheet)
+			redirect_to wizard_path(:step3)#(@specsheet)
 		else
 			render :edit
 		end
@@ -47,7 +47,7 @@ class SpecsheetsController < ApplicationController
 
 	private
 	def specsheet_params
-		params.require(:specsheet).permit(:name, :number_of_bowls, :installation, :corner_radius, :drain_location, :drain_size, :divider)
+		params.require(:specsheet).permit(:name, :number_of_bowls, :installation, :corner_radius, :drain_location, :drain_size, :divider, bowls_attributes: [:left_right, :front_back, :depth, :bottom_grid, :colander, :specsheet_id])
 	end
 
 end

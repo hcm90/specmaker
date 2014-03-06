@@ -14,14 +14,14 @@ class BowlsController < ApplicationController
 		end
  end
 
- def edit
+	def edit
 		@bowl = Bowl.find(params[:id])
 	end
 
 	def update
 		@bowl = Bowl.find(params[:id])
 		if @bowl.update_attributes(bowl_params)
-			redirect_to specsheet_path(@specsheet)
+			redirect_to specsheet_specsheet_steps_path(@specsheet)
 		else
 			render :edit
 		end
@@ -29,7 +29,7 @@ class BowlsController < ApplicationController
 
 	def delete
 		@bowl = Bowl.find(params[:id])
-		@bowl.destory
+		@bowl.destroy
 		redirect_to bowls_path
 	end
 

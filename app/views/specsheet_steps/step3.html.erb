@@ -1,4 +1,4 @@
-<%= form_for (@specsheet) do |f| %>
+<%= form_for @specsheet, url: wizard_path do |f| %>
 
 	<div class="field">
 		<%= f.label :installation, 'Installation' %> <br />
@@ -6,6 +6,7 @@
 		<%= f.label :installation, 'Undermount' %> <br />
 		<%= f.radio_button :installation, 'overmount' %>
 		<%= f.label :installation, 'Overmount' %><br />
+		<%= f.hidden_field :installation, value: '' %>
 	</div>
 
 	<div class="field">
@@ -18,6 +19,7 @@
 		<%= f.label :corner_radius, '25mm' %> <br />
 		<%= f.radio_button :corner_radius, '55mm' %>
 		<%= f.label :corner_radius, '55mm' %> <br />
+		<%= f.hidden_field :installation, value: '' %>
 	</div>
 
 	<div class="field">
@@ -30,6 +32,7 @@
 		<%= f.label :drain_location, 'Left' %> <br />
 		<%= f.radio_button :drain_location, 'right' %>
 		<%= f.label :drain_location, 'Right' %> <br />
+		<%= f.hidden_field :installation, value: '' %>
 	</div>
 
 	<div class="field">
@@ -38,6 +41,7 @@
 		<%= f.label :drain_size, '3.5"' %> <br />
 		<%= f.radio_button :drain_size, '2.25"' %>
 		<%= f.label :drain_size, '2.25"' %><br />
+		<%= f.hidden_field :installation, value: '' %>
 	</div>
 
 	<div class="field">
@@ -48,6 +52,7 @@
 		<%= f.label :divider, 'Lower/Normal' %> <br />
 		<%= f.radio_button :divider, 'thin' %>
 		<%= f.label :divider, 'Lower/Thin' %> <br />
+		<%= f.hidden_field :installation, value: '' %>
 	</div>
 
 	<div class="actions"><%= f.submit %></div>

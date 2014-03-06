@@ -1,7 +1,7 @@
 <h1>Mekal Specmaker</h1>
 
 
-<%= form_for (@specsheet) do |f| %>
+<%= form_for [@specsheet] do |f| %>
 	<div class="field">
 		<%= f.label :name %> <br />
 		<%= f.text_field :name %>
@@ -16,56 +16,6 @@
 		<%= f.radio_button :number_of_bowls, '3' %> 
 		<%= f.label :number_of_bowls, 'Triple Bowl' %> <br />
 		
-	</div>
-
-	<div class="field">
-		<%= f.label :installation, 'Installation' %> <br />
-		<%= f.radio_button :installation, 'undermount' %>
-		<%= f.label :installation, 'Undermount' %> <br />
-		<%= f.radio_button :installation, 'overmount' %>
-		<%= f.label :installation, 'Overmount' %><br />
-	</div>
-
-	<div class="field">
-		<%= f.label :corner_radius, 'Corner Radius' %> <br />
-		<%= f.radio_button :corner_radius, '0mm' %> 
-		<%= f.label :corner_radius, '0mm' %> <br />
-		<%= f.radio_button :corner_radius, '10mm' %> 
-		<%= f.label :corner_radius, '10mm' %> <br />
-		<%= f.radio_button :corner_radius, '25mm' %> 
-		<%= f.label :corner_radius, '25mm' %> <br />
-		<%= f.radio_button :corner_radius, '55mm' %>
-		<%= f.label :corner_radius, '55mm' %> <br />
-	</div>
-
-	<div class="field">
-		<%= f.label :drain_location, 'Drain Location' %> <br />
-		<%= f.radio_button :drain_location, 'center' %> 
-		<%= f.label :drain_location, 'Center' %> <br />
-		<%= f.radio_button :drain_location, 'rear' %> 
-		<%= f.label :drain_location, 'Rear/Offset' %> <br />
-		<%= f.radio_button :drain_location, 'left' %> 
-		<%= f.label :drain_location, 'Left' %> <br />
-		<%= f.radio_button :drain_location, 'right' %>
-		<%= f.label :drain_location, 'Right' %> <br />
-	</div>
-
-	<div class="field">
-		<%= f.label :drain_size, 'Drain Size' %> <br />
-		<%= f.radio_button :drain_size, '3.5"' %>
-		<%= f.label :drain_size, '3.5"' %> <br />
-		<%= f.radio_button :drain_size, '2.25"' %>
-		<%= f.label :drain_size, '2.25"' %><br />
-	</div>
-
-	<div class="field">
-		<%= f.label :divider, 'Divider' %> <br />
-		<%= f.radio_button :divider, 'normal' %>
-		<%= f.label :divider, 'Normal' %> <br />
-		<%= f.radio_button :divider, 'lower' %>
-		<%= f.label :divider, 'Lower/Normal' %> <br />
-		<%= f.radio_button :divider, 'thin' %>
-		<%= f.label :divider, 'Lower/Thin' %> <br />
 	</div>
 
 	<div class="actions"><%= f.submit %></div>
