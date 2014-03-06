@@ -9,11 +9,11 @@
 </ul>
 
 <h3>Bowls</h3>
-<ul>
+
 	<% @specsheet.bowls.each do |bowl| %>
-		<li><%= bowl.left_right %></li>
-		<li><%= bowl.front_back %></li>
-		<li><%= bowl.bottom_grid %></li>
-		<li><%= bowl.colander %></li>
+		<%= bowl.left_right %><br />
+		<%= bowl.front_back %><br />
+		<%= bowl.depth %><br />
+		<%= bowl.bottom_grid %><br />
+		<%= bowl.colander %><br />
 	<% end %>
-</ul>
