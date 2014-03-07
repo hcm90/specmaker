@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140305210642) do
+ActiveRecord::Schema.define(version: 20140307051625) do
 
   create_table "bowls", force: true do |t|
     t.integer  "left_right"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20140305210642) do
     t.string   "divider"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "status",                      default: "new"
   end
 
 end

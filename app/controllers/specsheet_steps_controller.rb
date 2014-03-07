@@ -9,6 +9,8 @@ end
 
 def update
 	@specsheet = Specsheet.find(params[:specsheet_id])
+	@specsheet.status = step
+	@specsheet.status = 'active' if step == steps.last
 	@specsheet.update_attributes(specsheet_params)
 
 	render_wizard @specsheet

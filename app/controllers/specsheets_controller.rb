@@ -9,6 +9,7 @@ class SpecsheetsController < ApplicationController
 
 	def new
 		@specsheet = Specsheet.new
+		@specsheet.status = 'step2'
 	end
 
 	def create
@@ -19,6 +20,7 @@ class SpecsheetsController < ApplicationController
 	 		@bowl.save
 	 		#@bowl = Bowl.new
 	 		@bowl.specsheet_id = @specsheet.id
+	 		@specsheet.status = 'step2'
 	 	end
 			redirect_to specsheet_specsheet_steps_path(@specsheet)#new_specsheet_bowl_path(@specsheet)
 		else

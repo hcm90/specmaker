@@ -1,16 +1,29 @@
 <%= form_for @specsheet, url: wizard_path do |f| %>
 
+<% if @specsheet.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@specsheet.errors.count, "error") %> prohibited this reservation from being saved:</h2>
+
+        <ul>
+        <% @specsheet.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
 	<div class="field">
 		<%= f.label :installation, 'Installation' %> <br />
+		<%= f.hidden_field :installation, value: ''%>
 		<%= f.radio_button :installation, 'undermount' %>
 		<%= f.label :installation, 'Undermount' %> <br />
 		<%= f.radio_button :installation, 'overmount' %>
 		<%= f.label :installation, 'Overmount' %><br />
-		<%= f.hidden_field :installation, value: '' %>
 	</div>
 
 	<div class="field">
 		<%= f.label :corner_radius, 'Corner Radius' %> <br />
+		<%= f.hidden_field :corner_radius, value: '' %>
 		<%= f.radio_button :corner_radius, '0mm' %> 
 		<%= f.label :corner_radius, '0mm' %> <br />
 		<%= f.radio_button :corner_radius, '10mm' %> 
@@ -19,11 +32,11 @@
 		<%= f.label :corner_radius, '25mm' %> <br />
 		<%= f.radio_button :corner_radius, '55mm' %>
 		<%= f.label :corner_radius, '55mm' %> <br />
-		<%= f.hidden_field :installation, value: '' %>
 	</div>
 
 	<div class="field">
 		<%= f.label :drain_location, 'Drain Location' %> <br />
+		<%= f.hidden_field :drain_location, value: '' %>
 		<%= f.radio_button :drain_location, 'center' %> 
 		<%= f.label :drain_location, 'Center' %> <br />
 		<%= f.radio_button :drain_location, 'rear' %> 
@@ -32,27 +45,26 @@
 		<%= f.label :drain_location, 'Left' %> <br />
 		<%= f.radio_button :drain_location, 'right' %>
 		<%= f.label :drain_location, 'Right' %> <br />
-		<%= f.hidden_field :installation, value: '' %>
 	</div>
 
 	<div class="field">
 		<%= f.label :drain_size, 'Drain Size' %> <br />
+		<%= f.hidden_field :drain_size, value: '' %>
 		<%= f.radio_button :drain_size, '3.5"' %>
 		<%= f.label :drain_size, '3.5"' %> <br />
 		<%= f.radio_button :drain_size, '2.25"' %>
 		<%= f.label :drain_size, '2.25"' %><br />
-		<%= f.hidden_field :installation, value: '' %>
 	</div>
 
 	<div class="field">
 		<%= f.label :divider, 'Divider' %> <br />
+		<%= f.hidden_field :divider, value: '' %>
 		<%= f.radio_button :divider, 'normal' %>
 		<%= f.label :divider, 'Normal' %> <br />
 		<%= f.radio_button :divider, 'lower' %>
 		<%= f.label :divider, 'Lower/Normal' %> <br />
 		<%= f.radio_button :divider, 'thin' %>
 		<%= f.label :divider, 'Lower/Thin' %> <br />
-		<%= f.hidden_field :installation, value: '' %>
 	</div>
 
 	<div class="actions"><%= f.submit %></div>
