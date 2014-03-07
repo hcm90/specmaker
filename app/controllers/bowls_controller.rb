@@ -35,7 +35,7 @@ class BowlsController < ApplicationController
 
 	private
 	def bowl_params
-		params.require(:bowl).permit(:left_right, :front_back, :depth, :bottom_grid, :colander, :specsheet_id)
+		params.require(:bowl).permit(:id, :left_right, :front_back, :depth, :bottom_grid, :colander, :specsheet_id)
 	end
 
 	def load_specsheet

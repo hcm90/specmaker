@@ -9,7 +9,7 @@ end
 
 def update
 	@specsheet = Specsheet.find(params[:specsheet_id])
-	@specsheet.status = step
+	@specsheet.status = step.to_s
 	@specsheet.status = 'active' if step == steps.last
 	@specsheet.update_attributes(specsheet_params)
 
@@ -24,7 +24,7 @@ def finish_wizard_path
 end
 
 def specsheet_params
- 	params.require(:specsheet).permit(:name, :number_of_bowls, :installation, :corner_radius, :drain_location, :drain_size, :divider, bowls_attributes: [:left_right, :front_back, :depth, :bottom_grid, :colander, :specsheet_id])
+ 	params.require(:specsheet).permit(:name, :number_of_bowls, :installation, :corner_radius, :drain_location, :drain_size, :divider, bowls_attributes: [:id, :left_right, :front_back, :depth, :bottom_grid, :colander, :specsheet_id])
 end
 
 end
