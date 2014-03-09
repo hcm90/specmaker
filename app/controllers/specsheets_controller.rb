@@ -13,13 +13,13 @@ class SpecsheetsController < ApplicationController
 
 	def create
 		@specsheet = Specsheet.new(specsheet_params)
+		number_of_bowls = params[:bowls].to_i
 		if @specsheet.save
-			@specsheet.number_of_bowls.times do |bowl|
-	 		@bowl = @specsheet.bowls.build
-	 		@bowl.save
-	 		#@bowl = Bowl.new
-	 		@bowl.specsheet_id = @specsheet.id
-	 	end
+			number_of_bowls.times do 
+	 			@bowl = @specsheet.bowls.build
+	 			@bowl.save
+	 			@bowl.specsheet_id = @specsheet.id
+	 		end
 			redirect_to specsheet_specsheet_steps_path(@specsheet)#new_specsheet_bowl_path(@specsheet)
 		else
 			render :new
