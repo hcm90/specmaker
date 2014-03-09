@@ -1,5 +1,4 @@
 class Specsheet < ActiveRecord::Base
-  attr_accessor :bowls
 has_many :bowls
 belongs_to :user
 accepts_nested_attributes_for :bowls
