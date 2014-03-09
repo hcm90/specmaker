@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140307051625) do
+ActiveRecord::Schema.define(version: 20140307220643) do
 
   create_table "bowls", force: true do |t|
     t.integer  "left_right"
@@ -35,6 +35,17 @@ ActiveRecord::Schema.define(version: 20140307051625) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "status",                      default: "new"
+    t.integer  "user_id"
   end
+
+  create_table "users", force: true do |t|
+    t.string   "email",            null: false
+    t.string   "crypted_password", null: false
+    t.string   "salt",             null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
 
 end

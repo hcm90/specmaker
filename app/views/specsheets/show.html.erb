@@ -1,20 +1,19 @@
-<%= @specsheet.status %>
-<h3><%= @specsheet.name %> </h3>
-<ul>
-  <li><%= @specsheet.number_of_bowls %></li>
-  <li><%= @specsheet.installation %></li>
-  <li><%= @specsheet.corner_radius %></li>
-  <li><%= @specsheet.drain_location %></li>
-  <li><%= @specsheet.drain_size %></li>
-  <li><%= @specsheet.divider %></li>
-</ul>
+<h2><%= @specsheet.name %> </h2>
 
-<h3>Bowls</h3>
+<p>Number of Bowls: <%= @specsheet.number_of_bowls %></p>
 
 	<% @specsheet.bowls.each do |bowl| %>
+	<h3>Bowl</h3>
 		<%= bowl.left_right %><br />
 		<%= bowl.front_back %><br />
 		<%= bowl.depth %><br />
 		<%= bowl.bottom_grid %><br />
 		<%= bowl.colander %><br />
 	<% end %>
+
+<h3>Configuration</h3>
+<%= @specsheet.installation %><br />
+<%= @specsheet.corner_radius %><br />
+<%= @specsheet.drain_location %><br />
+<%= @specsheet.drain_size %><br />
+<%= @specsheet.divider %>

@@ -1,18 +1,23 @@
 Specmaker::Application.routes.draw do
+  get "welcome/index"
+  get "logout" => "sessions#destroy", :as => "logout"
+  get "login" => "sessions#new", :as => "login"
+  get "signup" => "users#new", :as => "signup"
 
   resources :specsheets do 
     resources :bowls, :except => [:show, :index]
     resources :specsheet_steps
   end
 
-
+  resources :users, :only => [:index, :show, :new, :create]
+  resources :sessions, :only => [:create, :destroy]
 
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'welcome#index'
+  root 'specsheets#new'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
