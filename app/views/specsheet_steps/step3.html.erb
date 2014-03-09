@@ -67,6 +67,6 @@
 		<%= f.label :divider, 'Lower/Thin' %> <br />
 	</div>
 
-	<div class="actions"><%= f.submit %></div>
+	<div class="actions"><%= f.submit %><%= link_to 'Skip this step', next_wizard_path %><%= link_to 'Previous step', previous_wizard_path %></div>
 
 <% end %>
