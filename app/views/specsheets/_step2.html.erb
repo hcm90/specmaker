@@ -1,0 +1,49 @@
+<% if @specsheet.bowls.any? %>
+	<%= form_for ([@specsheet, @bowl])  do |bowl_fields| %>
+		<% if @specsheet.errors.any? %>
+	      <div id="error_explanation">
+	        <h2><%= pluralize(@bowls.errors.count, "error") %> prohibited this reservation from being saved:</h2>
+
+	        <ul>
+	        <% @bowls.errors.full_messages.each do |msg| %>
+	          <li><%= msg %></li>
+	        <% end %>
+	        </ul>
+	      </div>
+	    <% end %>
+
+		<div class="field">
+			<%= bowl_fields.label :left_right, 'Left to Right' %> <br />
+			<%= bowl_fields.number_field :left_right, in: 8..32 %>
+		</div>
+
+		<div class="field">
+			<%= bowl_fields.label :front_back, 'Front to Back' %> <br />
+			<%= bowl_fields.number_field :front_back, in: 8..25 %>
+		</div>
+
+		<div class="field">
+			<%= bowl_fields.label :depth, 'Depth' %> <br />
+			<%= bowl_fields.number_field :depth, in: 3..15 %>
+		</div>
+
+		<div class="field">
+			<%= bowl_fields.label :bottom_grid, 'Bottom Grid' %> <br />
+			<%= bowl_fields.radio_button :bottom_grid, true %>
+			<%= bowl_fields.label :bottom_grid, 'Include' %> <br />		
+			<%= bowl_fields.radio_button :bottom_grid, false %>
+			<%= bowl_fields.label :bottom_grid, 'Do not include' %> <br />
+		</div>
+
+		<div class="field">
+			<%= bowl_fields.label :colander, 'Colander' %> <br />
+			<%= bowl_fields.radio_button :colander, true %>
+			<%= bowl_fields.label :colander, 'Include' %> <br />		
+			<%= bowl_fields.radio_button :colander, false %>
+			<%= bowl_fields.label :colander, 'Do not include' %> <br />
+		</div>
+
+	<div class="actions"><%= f.submit %></div>
+
+	<% end %>
+<% end %>	

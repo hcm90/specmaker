@@ -6,7 +6,6 @@ Specmaker::Application.routes.draw do
 
   resources :specsheets do 
     resources :bowls, :except => [:show, :index]
-    resources :specsheet_steps
   end
 
   resources :users, :only => [:index, :show, :new, :create]

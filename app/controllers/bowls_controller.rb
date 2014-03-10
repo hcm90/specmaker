@@ -6,12 +6,17 @@ class BowlsController < ApplicationController
  end
 
  def create
- 	@bowl = Bowl.find(params[:id])
-		if @bowl.update_attributes(bowl_params)
-			redirect_to bowl_path(@bowl)
-		else
-			render :new
-		end
+	if params[:bowls].present? && @specsheet.bowls.count == 0
+		number_of_bowls = params[:bowls].to_i
+		number_of_bowls.times do 
+ 			@bowl = @specsheet.bowls.build
+ 			@bowl.save
+ 			@bowl.specsheet_id = @specsheet.id
+ 			redirect_to edit_specsheet_path(@specsheet)
+ 		end
+ 	else
+ 		render :new
+ 	end
  end
 
 	def edit
@@ -21,7 +26,7 @@ class BowlsController < ApplicationController
 	def update
 		@bowl = Bowl.find(params[:id])
 		if @bowl.update_attributes(bowl_params)
-			redirect_to specsheet_specsheet_steps_path(@specsheet)
+			redirect_to edit_specsheet_path(@specsheet)
 		else
 			render :edit
 		end

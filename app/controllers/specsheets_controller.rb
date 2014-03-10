@@ -1,10 +1,12 @@
 class SpecsheetsController < ApplicationController
+ #before_filter :load_bowls
 	def index
 		@specsheets = Specsheets.all
 	end
 
 	def show
 		@specsheet = Specsheet.find(params[:id])
+		@bowl = @specsheet.bowls.all
 	end
 
 	def new
@@ -13,14 +15,14 @@ class SpecsheetsController < ApplicationController
 
 	def create
 		@specsheet = Specsheet.new(specsheet_params)
-		number_of_bowls = params[:bowls].to_i
+		#number_of_bowls = params[:bowls].to_i
 		if @specsheet.save
-			number_of_bowls.times do 
-	 			@bowl = @specsheet.bowls.build
-	 			@bowl.save
-	 			@bowl.specsheet_id = @specsheet.id
-	 		end
-			redirect_to specsheet_specsheet_steps_path(@specsheet)#new_specsheet_bowl_path(@specsheet)
+			# number_of_bowls.times do 
+	 	# 		@bowl = @specsheet.bowls.build
+	 	# 		@bowl.save
+	 	# 		@bowl.specsheet_id = @specsheet.id
+	 	#	end
+			redirect_to edit_specsheet_path(@specsheet)
 		else
 			render :new
 		end
@@ -28,12 +30,22 @@ class SpecsheetsController < ApplicationController
 
 	def edit
 		@specsheet = Specsheet.find(params[:id])
+		@bowls = @specsheet.bowls.all
 	end
 
 	def update
 		@specsheet = Specsheet.find(params[:id])
+		@bowl = @specsheet.bowls.all
 		if @specsheet.update_attributes(specsheet_params)
-			redirect_to wizard_path(:step3)#(@specsheet)
+			if params[:bowls].present? && @specsheet.bowls.count == 0
+				number_of_bowls = params[:bowls].to_i
+			 	number_of_bowls.times do 
+ 		 			@bowl = @specsheet.bowls.build
+ 		 			@bowl.save
+ 		 			@bowl.specsheet_id = @specsheet.id
+ 		 		end
+ 		 	end
+			redirect_to edit_specsheet_path(@specsheet)
 		else
 			render :edit
 		end
@@ -47,7 +59,11 @@ class SpecsheetsController < ApplicationController
 
 	private
 	def specsheet_params
-		params.require(:specsheet).permit(:name, :number_of_bowls, :installation, :corner_radius, :drain_location, :drain_size, :divider, bowls_attributes: [:id, :left_right, :front_back, :depth, :bottom_grid, :colander, :specsheet_id])
+		params.require(:specsheet).permit(:name, :number_of_bowls, :installation, :corner_radius, :drain_location, :drain_size, :divider)
 	end
+
+	# def load_bowls
+	# 	@bowl = @specsheet.bowls.all
+	# end
 
 end

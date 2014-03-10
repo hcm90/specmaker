@@ -1,0 +1,15 @@
+<% @specsheet.bowls.each do |bowl| %>
+<h3>Bowl</h3>
+	<%= bowl.left_right %><br />
+	<%= bowl.front_back %><br />
+	<%= bowl.depth %><br />
+	<%= bowl.bottom_grid %><br />
+	<%= bowl.colander %><br />
+<% end %>
+
+<h3>Configuration</h3>
+<%= @specsheet.installation %><br />
+<%= @specsheet.corner_radius %><br />
+<%= @specsheet.drain_location %><br />
+<%= @specsheet.drain_size %><br />
+<%= @specsheet.divider %>
