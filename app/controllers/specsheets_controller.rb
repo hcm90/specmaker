@@ -35,24 +35,32 @@ class SpecsheetsController < ApplicationController
 
 	def update
 		@specsheet = Specsheet.find(params[:id])
-		@bowl = @specsheet.bowls.all
+		
 		if @specsheet.update_attributes(specsheet_params)
 			if params[:bowls].present? && @specsheet.bowls.count == 0
 				number_of_bowls = params[:bowls].to_i
+				@all_bowls = []
 			 	number_of_bowls.times do 
  		 			@bowl = @specsheet.bowls.build
  		 			@bowl.save
- 		 			@bowl.specsheet_id = @specsheet.id
+ 		 			@all_bowls << @bowl
  		 		end
+ 		 	# add an else statement before I crash again, boom!!! :-(
+ 		 	else
+ 	
  		 	end
  		 	respond_to do |format|
  		 		format.html { redirect_to edit_specsheet_path(@specsheet) }
- 		 		format.json { render json: { specsheet: @specsheet.id, bowl: @bowl.id } }
+ 		 		format.json { render json: { results: 
+	 				@all_bowls.map do |b| 
+	 					{url: specsheet_bowl_path(@specsheet, b)}
+	 				end
+	 			} }
  		 	end
 		else
 			respond_to do |format|
 				format.html { redirect_to edit_specsheet_path(@specsheet) }
-				format.json { render json: { specsheet: @specsheet.id, bowl: @bowl.id } }
+				format.json { render json: { url: specsheet_bowl_path(@specsheet, @bowl) } }
 			end
 		end
 	end

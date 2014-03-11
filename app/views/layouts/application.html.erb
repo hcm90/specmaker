@@ -42,7 +42,21 @@
     </div>
     
   </div>
-    
+
+  <section>
+       <div class="frame">
+           <div class="col1 main-content">
+              <% if flash[:notice] %>
+                <p id="notice"><%= flash[:notice] %></p>
+              <% end %>
+              <% if flash[:alert] %>
+                <p id="alert"><%= flash[:alert] %></p>
+              <% end %>
+    <%= yield %>
+           </div>
+       </div>
+   </section>
+  
   
   <!-- Footer -->
   

@@ -21,20 +21,38 @@ $(function(){ $(document).foundation(); });
 $(document).ready(function() {
 	$("form.select_bowl_amt").on("submit", function(e) {
 		e.preventDefault();
-		var value = $(this).value;
-		for (var i=0;i<value.length;i++){
-			$.ajax({
-				url: $(this).attr("action"),
-				data: $(this).serialize(),
-				type: "POST",
-				dataType: "json",
-				success: function(data) {
-					console.log(data);
-					var foo = ich.bowls(data);
-					$("div.row").append(foo);
-				}
-			})
-		}
 
+		$.ajax({
+			url: $(this).attr("action"),
+			data: $(this).serialize(),
+			type: "POST",
+			dataType: "json",
+			success: function(data) {
+				console.log(data);
+				var index = 0;
+				for (var i=0; i < data.results.length; i++) {
+				// loop over data.results {
+					var foo = ich.bowls(data.results[index]);
+					var index += 1;
+					$("div.row").append(foo);
+				 }
+			}
+		})
 	});
 })
+
+
+
+$(function() {  
+  $('#front_back').keyup(function() {
+var value = $(this).val();
+  if (value == 20) {
+    $('#colander_true').attr('enabled');
+    }
+  else {
+    $('#colander_true').attr('disabled');
+    }
+  )};
+)};
+
+
