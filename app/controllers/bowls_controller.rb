@@ -1,5 +1,6 @@
 class BowlsController < ApplicationController
  before_filter :load_specsheet
+ skip_before_action :verify_authenticity_token, only: [:update]
 
  def new
  	@bowl = Bowl.new
@@ -28,7 +29,7 @@ class BowlsController < ApplicationController
 		if @bowl.update_attributes(bowl_params)
 			redirect_to edit_specsheet_path(@specsheet)
 		else
-			render :edit
+			redirect_to edit_specsheet_path(@specsheet)
 		end
 	end
 
