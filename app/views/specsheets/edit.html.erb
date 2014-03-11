@@ -75,11 +75,11 @@
 		<%= f.hidden_field :corner_radius, value: '' %>
 		<%= f.radio_button :corner_radius, '0mm', html: { class: "0mm" } %> 
 		<%= f.label :corner_radius, '0mm' %> <br />
-		<%= f.radio_button :corner_radius, '10mm' %> 
+		<%= f.radio_button :corner_radius, '10mm', html: { class: "10mm" }%> 
 		<%= f.label :corner_radius, '10mm' %> <br />
-		<%= f.radio_button :corner_radius, '25mm' %> 
+		<%= f.radio_button :corner_radius, '25mm', html: { class: "25mm" } %> 
 		<%= f.label :corner_radius, '25mm' %> <br />
-		<%= f.radio_button :corner_radius, '55mm' %>
+		<%= f.radio_button :corner_radius, '55mm', html: { class: "55mm" } %>
 		<%= f.label :corner_radius, '55mm' %> <br />
 	</div>
 
