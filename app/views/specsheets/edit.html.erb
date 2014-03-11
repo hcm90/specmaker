@@ -108,11 +108,11 @@
 	<div class="field">
 		<%= f.label :divider, 'Divider' %> <br />
 		<%= f.hidden_field :divider, value: '' %>
-		<%= f.radio_button :divider, 'normal' %>
+		<%= f.radio_button :divider, 'normal', html: { class: "normal_divider" } %>
 		<%= f.label :divider, 'Normal' %> <br />
-		<%= f.radio_button :divider, 'lower' %>
+		<%= f.radio_button :divider, 'lower', html: { class: "lower_divider" } %>
 		<%= f.label :divider, 'Lower/Normal' %> <br />
-		<%= f.radio_button :divider, 'thin' %>
+		<%= f.radio_button :divider, 'thin', html: { class: "thin_divider" } %>
 		<%= f.label :divider, 'Lower/Thin' %> <br />
 	</div>
 
