@@ -17,3 +17,22 @@
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
+
+$(document).ready(function() {
+	$("form.select_bowl_amt").on("submit", function(e) {
+		e.preventDefault();
+
+		$.ajax({
+			url: $(this).attr("action"),
+			data: $(this).serialize(),
+			type: "POST",
+			dataType: "json",
+			success: function(data) {
+				console.log(data);
+				var foo = ich.bowls();
+				$("div.row").append(foo);
+			}
+		})
+
+	});
+})

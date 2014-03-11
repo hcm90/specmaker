@@ -7,7 +7,7 @@
 	<% if @specsheet.bowls.any? %>
 	<% @bowls.each do |bowl| %>
 
-		<%= form_for ([@specsheet, bowl])  do |bowl_fields| %>
+		<%= form_for([@specsheet, bowl])  do |bowl_fields| %>
 			<% if @specsheet.errors.any? %>
 		      <div id="error_explanation">
 		        <h2><%= pluralize(@bowls.errors.count, "error") %> prohibited this reservation from being saved:</h2>
