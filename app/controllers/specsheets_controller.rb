@@ -36,19 +36,26 @@ class SpecsheetsController < ApplicationController
 	def update
 		@specsheet = Specsheet.find(params[:id])
 		@bowl = @specsheet.bowls.all
-		if @specsheet.update_attributes(specsheet_params)
-			if params[:bowls].present? && @specsheet.bowls.count == 0
-				number_of_bowls = params[:bowls].to_i
-			 	number_of_bowls.times do 
+		if params[:bowls].present? && @specsheet.bowls.count == 0
+			number_of_bowls = params[:bowls].to_i
+			 number_of_bowls.times do 
  		 			@bowl = @specsheet.bowls.build
  		 			@bowl.save
  		 			@bowl.specsheet_id = @specsheet.id
- 		 		end
  		 	end
+ 		 end
+		respond_to do |format|
+		if @specsheet.update_attributes(specsheet_params)
+
 			redirect_to edit_specsheet_path(@specsheet)
 		else
-			render :edit
+			format.html {redirect_to edit_specsheet_path(@specsheet)}
+			format.js {}
 		end
+		format.json { render json: @specsheet.bowls }
+		format.js {}
+		format.html {redirect_to edit_specsheet_path(@specsheet)}
+	end
 	end
 
 	def delete

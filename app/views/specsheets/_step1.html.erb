@@ -1,4 +1,4 @@
-<%= form_for @specsheet do |f| %>
+<%= form_for @specsheet, :remote => true, :format => :json do |f| %>
 <div class="field">
 	<%= f.hidden_field :id %>
 	<%= label :bowls, 'Number of Bowls'%> <br />
