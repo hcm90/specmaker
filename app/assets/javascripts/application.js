@@ -43,16 +43,3 @@ $(document).ready(function() {
 
 
 
-$(function() {  
-	$('#front_back').onblur(function() {
-	var value = $(this).val();
-  	if (value == 20) {
-    	$('#colander_true').attr('enabled');
-    }
-  	else {
-    	$('#colander_true').attr('disabled');
-    }
-  });
-});
-
-
