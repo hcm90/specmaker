@@ -1,5 +1,3 @@
-
-
 	<%= render "step1" %>
 
 	<h2>Bowl Measurements</h2>
@@ -61,29 +59,29 @@
 	<h2>Configuration</h2>
 	<%= form_for @specsheet do |f| %>
 
-	<div class="field">
+	<div class="installation">
 		<%= f.label :installation, 'Installation' %> <br />
 		<%= f.hidden_field :installation, value: ''%>
-		<%= f.radio_button :installation, 'undermount' %>
+		<%= f.radio_button :installation, 'undermount', :id => "undermount" %>
 		<%= f.label :installation, 'Undermount' %> <br />
-		<%= f.radio_button :installation, 'overmount' %>
+		<%= f.radio_button :installation, 'overmount', :id => "overmount" %>
 		<%= f.label :installation, 'Overmount' %><br />
 	</div>
 
-	<div class="field">
+	<div class="corner_radius">
 		<%= f.label :corner_radius, 'Corner Radius' %> <br />
 		<%= f.hidden_field :corner_radius, value: '' %>
-		<%= f.radio_button :corner_radius, '0mm' %> 
+		<%= f.radio_button :corner_radius, '0mm', :id => "0mm" %> 
 		<%= f.label :corner_radius, '0mm' %> <br />
-		<%= f.radio_button :corner_radius, '10mm' %> 
+		<%= f.radio_button :corner_radius, '10mm', :id => "10mm" %> 
 		<%= f.label :corner_radius, '10mm' %> <br />
-		<%= f.radio_button :corner_radius, '25mm' %> 
+		<%= f.radio_button :corner_radius, '25mm', :id => "25mm" %> 
 		<%= f.label :corner_radius, '25mm' %> <br />
-		<%= f.radio_button :corner_radius, '55mm' %>
+		<%= f.radio_button :corner_radius, '55mm', :id => "55mm" %>
 		<%= f.label :corner_radius, '55mm' %> <br />
 	</div>
 
-	<div class="field">
+	<div class="drain_location">
 		<%= f.label :drain_location, 'Drain Location' %> <br />
 		<%= f.hidden_field :drain_location, value: '' %>
 		<%= f.radio_button :drain_location, 'center' %> 
@@ -96,7 +94,7 @@
 		<%= f.label :drain_location, 'Right' %> <br />
 	</div>
 
-	<div class="field">
+	<div class="drain_size">
 		<%= f.label :drain_size, 'Drain Size' %> <br />
 		<%= f.hidden_field :drain_size, value: '' %>
 		<%= f.radio_button :drain_size, '3.5"' %>
@@ -105,14 +103,14 @@
 		<%= f.label :drain_size, '2.25"' %><br />
 	</div>
 
-	<div class="field">
+	<div class="divider">
 		<%= f.label :divider, 'Divider' %> <br />
 		<%= f.hidden_field :divider, value: '' %>
-		<%= f.radio_button :divider, 'normal' %>
+		<%= f.radio_button :divider, 'normal', :id => "divider_normal" %>
 		<%= f.label :divider, 'Normal' %> <br />
-		<%= f.radio_button :divider, 'lower' %>
+		<%= f.radio_button :divider, 'lower', :id => "divider_lower" %>
 		<%= f.label :divider, 'Lower/Normal' %> <br />
-		<%= f.radio_button :divider, 'thin' %>
+		<%= f.radio_button :divider, 'thin', :id => "divider_thin" %>
 		<%= f.label :divider, 'Lower/Thin' %> <br />
 	</div>
 

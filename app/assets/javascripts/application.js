@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
-//= require turbolinks
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
@@ -33,7 +32,7 @@ $(document).ready(function() {
 				for (var i=0; i < data.results.length; i++) {
 				// loop over data.results {
 					var foo = ich.bowls(data.results[index]);
-					var index += 1;
+					index += 1;
 					$("div.row").append(foo);
 				 }
 			}
