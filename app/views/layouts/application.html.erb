@@ -12,18 +12,20 @@
   </head>
 
   <body>
-    <!-- Header and Nav -->
-  
+    <!-- Header and Nav -->  
   <div class="row">
-    <div class="large-3 columns">
+    <div class="large-3 columns" >
       <h1><%=link_to image_tag("/mekal.png"), new_specsheet_path %></h1>
     </div>
     <div class="large-9 columns">
       <ul class="inline-list right">
-        <li><a href="#">Step 1</a></li>
-        <li><a href="#">Step 2</a></li>
-        <li><a href="#">Step 3</a></li>
-        <li><a href="#">Specsheet</a></li>
+        <% if current_user %>
+          <li>Signed in as <%= link_to current_user.email, user_path(current_user) %></li>
+          <li><%= link_to "Log out", session_path("current"), :method => :delete %></li>
+        <% else %>
+          <li><%= link_to "Log in", new_session_path %></li>
+          <li><%= link_to "Sign up", new_user_path %></li>
+        <% end %>
       </ul>
     </div>
   </div>
@@ -42,41 +44,33 @@
     </div>
     
   </div>
-
-  <section>
-       <div class="frame">
-           <div class="col1 main-content">
-              <% if flash[:notice] %>
-                <p id="notice"><%= flash[:notice] %></p>
-              <% end %>
-              <% if flash[:alert] %>
-                <p id="alert"><%= flash[:alert] %></p>
-              <% end %>
-           </div>
-       </div>
-   </section>
+<!-- 
+  <section>
+       <div class="frame">
+           <div class="col1 main-content">
+              <% if flash[:notice] %>
+                <p id="notice"><%= flash[:notice] %></p>
+              <% end %>
+              <% if flash[:alert] %>
+                <p id="alert"><%= flash[:alert] %></p>
+              <% end %>
+           </div>
+       </div>
+   </section> -->
   
   
   <!-- Footer -->
-  
+<!--   
   <footer class="row">
     <div class="large-12 columns">
       <hr />
       <div class="row">
-        <div class="large-6 columns">
+        <div class="large-12 columns">
           <p>© Copyright helloheathergraham, itsheitor!</p>
-        </div>
-        <div class="large-6 columns">
-          <ul class="inline-list right">
-            <li><a href="#">Step 1</a></li>
-            <li><a href="#">Step 2</a></li>
-            <li><a href="#">Step 3</a></li>
-            <li><a href="#">Specsheet</a></li>
-          </ul>
         </div>
       </div>
     </div> 
-  </footer>
+  </footer> -->
     <%= javascript_include_tag "application" %>
   </body>
 </html>

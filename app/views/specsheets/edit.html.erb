@@ -1,161 +1,135 @@
-	<%= render "step1" %>
-
-	<h2>Bowl Measurements</h2>
-
-	<% if @specsheet.bowls.any? %>
-	<% @bowls.each do |bowl| %>
-
-		<%= form_for([@specsheet, bowl])  do |bowl_fields| %>
-			<% if @specsheet.errors.any? %>
-		      <div id="error_explanation">
-		        <h2><%= pluralize(@bowls.errors.count, "error") %> prohibited this reservation from being saved:</h2>
-
-		        <ul>
-		        <% @bowls.errors.full_messages.each do |msg| %>
-		          <li><%= msg %></li>
-		        <% end %>
-		        </ul>
-		      </div>
-		    <% end %>
-
-			<div class="field">
-				<%= bowl_fields.label :left_right, 'Left to Right' %> <br />
-				<%= bowl_fields.number_field :left_right, in: 8..32 %>
-			</div>
-
-			<div class="field">
-				<%= bowl_fields.label :front_back, 'Front to Back' %> <br />
-				<%= bowl_fields.number_field :front_back, in: 8..25 %>
-			</div>
-
-			<div class="field">
-				<%= bowl_fields.label :depth, 'Depth' %> <br />
-				<%= bowl_fields.number_field :depth, in: 3..15 %>
-			</div>
-
-			<div class="field">
-				<%= bowl_fields.label :bottom_grid, 'Bottom Grid' %> <br />
-				<%= bowl_fields.radio_button :bottom_grid, true %>
-				<%= bowl_fields.label :bottom_grid, 'Include' %> <br />		
-				<%= bowl_fields.radio_button :bottom_grid, false %>
-				<%= bowl_fields.label :bottom_grid, 'Do not include' %> <br />
-			</div>
-
-			<div class="field">
-				<%= bowl_fields.label :colander, 'Colander' %> <br />
-				<%= bowl_fields.radio_button :colander, true %>
-				<%= bowl_fields.label :colander, 'Include' %> <br />		
-				<%= bowl_fields.radio_button :colander, false %>
-				<%= bowl_fields.label :colander, 'Do not include' %> <br />
-			</div>
-
-		<div class="actions"><%= bowl_fields.submit %></div>
-
+<div class = "row" id = "bowl-number">
+	<fieldset>
+		<legend>What type of sink are you building?</legend>
+		<%= form_for @specsheet, html: { class: "select_bowl_amt" } do |f| %>
+			<%= f.hidden_field :id %>
+			<div class="large-12 columns">
+			<label>Number of Bowls</label>
+				<%= radio_button_tag(:bowls, 1, params[:bowls]) %> 
+				<%= label_tag :bowls, 'Single Bowl', :class => 'specsheet' %> 
+				<%= radio_button_tag(:bowls, 2, params[:bowls]) %>
+				<%= label_tag :bowls, 'Double Bowl', :class => 'specsheet' %> 
+				<%= radio_button_tag(:bowls, 3, params[:bowls]) %> 
+				<%= label_tag :bowls, 'Triple Bowl', :class => 'specsheet' %> </br>
+			<%= f.submit :class => "button [tiny]", :id => "button"%>
+		</div>
 		<% end %>
-	<% end %>
-<% end %>	
+	</fieldset>
+</div>
 
 
-	<h2>Configuration</h2>
-	<%= form_for @specsheet do |f| %>
+<div class = "row">
+	<fieldset>
+	<legend>Configuration</legend>
+		<%= form_for @specsheet do |f| %>
+			<row>
+			<div class="large-4 columns">
+				<div class="field">
+					<%= f.label :installation, 'Installation' %> <br />
+					<%= f.hidden_field :installation, value: ''%>
+					<%= f.radio_button :installation, 'undermount', :id => "undermount" %>
+					<%= f.label :installation, 'Undermount' %> <br />
+					<%= f.radio_button :installation, 'overmount', :id => "overmount" %>
+					<%= f.label :installation, 'Overmount' %><br />
+				</div>
+			</div>
+			<div class="large-4 columns">
+				<div class="field">
+					<%= f.label :corner_radius, 'Corner Radius' %> <br />
+					<%= f.hidden_field :corner_radius, value: '' %>
+					<%= f.radio_button :corner_radius, '0mm', :id => "0mm" %> 
+					<%= f.label :corner_radius, '0mm' %> <br />
+					<%= f.radio_button :corner_radius, '10mm', :id => "10mm" %> 
+					<%= f.label :corner_radius, '10mm' %> <br />
+					<%= f.radio_button :corner_radius, '25mm', :id => "25mm" %> 
+					<%= f.label :corner_radius, '25mm' %> <br />
+					<%= f.radio_button :corner_radius, '55mm', :id => "55mm" %>
+					<%= f.label :corner_radius, '55mm' %> <br />
+				</div>
+			</div>
+			<div class="large-4 columns">
+				<div class="field">
+					<%= f.label :drain_location, 'Drain Location' %> <br />
+					<%= f.hidden_field :drain_location, value: '' %>
+					<%= f.radio_button :drain_location, 'center' %> 
+					<%= f.label :drain_location, 'Center' %> <br />
+					<%= f.radio_button :drain_location, 'rear' %> 
+					<%= f.label :drain_location, 'Rear/Offset' %> <br />
+					<%= f.radio_button :drain_location, 'left' %> 
+					<%= f.label :drain_location, 'Left' %> <br />
+					<%= f.radio_button :drain_location, 'right' %>
+					<%= f.label :drain_location, 'Right' %> <br />
+				</div>
+			</div>
+			</row>
+			<row>
+				<div class="large-4 columns">
+					<%= f.label :drain_size, 'Drain Size' %> <br />
+					<%= f.hidden_field :drain_size, value: '' %>
+					<%= f.radio_button :drain_size, '3.5"' %>
+					<%= f.label :drain_size, '3.5"' %> <br />
+					<%= f.radio_button :drain_size, '2.25"' %>
+					<%= f.label :drain_size, '2.25"' %><br />
+				</div>
+				<div class="large-4 columns">
+					<%= f.label :divider, 'Divider' %> <br />
+					<%= f.hidden_field :divider, value: '' %>
+					<%= f.radio_button :divider, 'normal', :id => "divider_normal" %>
+					<%= f.label :divider, 'Normal' %> <br />
+					<%= f.radio_button :divider, 'lower', :id => "divider_lower" %>
+					<%= f.label :divider, 'Lower/Normal' %> <br />
+					<%= f.radio_button :divider, 'thin', :id => "divider_thin" %>
+					<%= f.label :divider, 'Lower/Thin' %> <br />
+				</div>
+			</row>
+			<row>
+				<div class="large-12 columns" id ="button">
+				<%= f.submit :class => "button" %>
+				</div>
+			</row>
+		<% end %>
+	</fieldset>
+</div>
 
-	<div class="installation">
-		<%= f.label :installation, 'Installation' %> <br />
-		<%= f.hidden_field :installation, value: ''%>
-		<%= f.radio_button :installation, 'undermount', :id => "undermount" %>
-		<%= f.label :installation, 'Undermount' %> <br />
-		<%= f.radio_button :installation, 'overmount', :id => "overmount" %>
-		<%= f.label :installation, 'Overmount' %><br />
-	</div>
-
-	<div class="corner_radius">
-		<%= f.label :corner_radius, 'Corner Radius' %> <br />
-		<%= f.hidden_field :corner_radius, value: '' %>
-		<%= f.radio_button :corner_radius, '0mm', :id => "0mm" %> 
-		<%= f.label :corner_radius, '0mm' %> <br />
-		<%= f.radio_button :corner_radius, '10mm', :id => "10mm" %> 
-		<%= f.label :corner_radius, '10mm' %> <br />
-		<%= f.radio_button :corner_radius, '25mm', :id => "25mm" %> 
-		<%= f.label :corner_radius, '25mm' %> <br />
-		<%= f.radio_button :corner_radius, '55mm', :id => "55mm" %>
-		<%= f.label :corner_radius, '55mm' %> <br />
-	</div>
-
-	<div class="drain_location">
-		<%= f.label :drain_location, 'Drain Location' %> <br />
-		<%= f.hidden_field :drain_location, value: '' %>
-		<%= f.radio_button :drain_location, 'center' %> 
-		<%= f.label :drain_location, 'Center' %> <br />
-		<%= f.radio_button :drain_location, 'rear' %> 
-		<%= f.label :drain_location, 'Rear/Offset' %> <br />
-		<%= f.radio_button :drain_location, 'left' %> 
-		<%= f.label :drain_location, 'Left' %> <br />
-		<%= f.radio_button :drain_location, 'right' %>
-		<%= f.label :drain_location, 'Right' %> <br />
-	</div>
-
-	<div class="drain_size">
-		<%= f.label :drain_size, 'Drain Size' %> <br />
-		<%= f.hidden_field :drain_size, value: '' %>
-		<%= f.radio_button :drain_size, '3.5"' %>
-		<%= f.label :drain_size, '3.5"' %> <br />
-		<%= f.radio_button :drain_size, '2.25"' %>
-		<%= f.label :drain_size, '2.25"' %><br />
-	</div>
-
-	<div class="divider">
-		<%= f.label :divider, 'Divider' %> <br />
-		<%= f.hidden_field :divider, value: '' %>
-		<%= f.radio_button :divider, 'normal', :id => "divider_normal" %>
-		<%= f.label :divider, 'Normal' %> <br />
-		<%= f.radio_button :divider, 'lower', :id => "divider_lower" %>
-		<%= f.label :divider, 'Lower/Normal' %> <br />
-		<%= f.radio_button :divider, 'thin', :id => "divider_thin" %>
-		<%= f.label :divider, 'Lower/Thin' %> <br />
-	</div>
-
-	<%= f.submit %>
-
-<% end %>
-
+<div class="row">
 <script id="bowls" type="text/html">
-<form accept-charset="UTF-8" action="{{ url }}" class="edit_bowl" id="edit_bowl_{{ bowl }}" method="post">
-	<input name="_method" type="hidden" value="patch" />
-			<div class="field">
-				<label for="bowl_left_right">Left to Right</label> <br>
-				<input id="bowl_left_right" max="32" min="8" name="bowl[left_right]" type="number">
-			</div>
+	<div class="large-4 columns">
+		<fieldset>
+		<legend>Bowl Measurements</legend>
+			<form accept-charset="UTF-8" action="{{ url }}" class="edit_bowl" id="edit_bowl_{{ bowl }}" method="post">
+			  <div style='margin:0;padding:0;display:inline'>
+				<input name='_method' type='hidden' value='patch' />
+				</div>
+					<label for="bowl_left_right">Left to Right</label> <br>
+					<input id="bowl_left_right" max="32" min="8" name="bowl[left_right]" type="number">
 
-			<div class="field">
-				<label for="bowl_front_back">Front to Back</label> <br>
-				<input id="bowl_front_back" max="25" min="8" name="bowl[front_back]" type="number">
-			</div>
+					<label for="bowl_front_back">Front to Back</label> <br>
+					<input id="bowl_front_back" max="25" min="8" name="bowl[front_back]" type="number">
 
-			<div class="field">
-				<label for="bowl_depth">Depth</label> <br>
-				<input id="bowl_depth" max="15" min="3" name="bowl[depth]" type="number">
-			</div>
+					<label for="bowl_depth">Depth</label> <br>
+					<input id="bowl_depth" max="15" min="3" name="bowl[depth]" type="number">
 
-			<div class="field">
-				<label for="bowl_bottom_grid">Bottom Grid</label> <br>
-				<input id="bowl_bottom_grid_true" name="bowl[bottom_grid]" type="radio" value="true">
-				<label for="bowl_bottom_grid">Include</label> <br>		
-				<input id="bowl_bottom_grid_false" name="bowl[bottom_grid]" type="radio" value="false">
-				<label for="bowl_bottom_grid">Do not include</label> <br>
-			</div>
+					<label>Bottom Grid</br>
+						<input id="bowl_bottom_grid_true" name="bowl[bottom_grid]" type="radio" value="true">
+						<label for="bowl_bottom_grid">Include</label> </br>
+						<input id="bowl_bottom_grid_false" name="bowl[bottom_grid]" type="radio" value="false">
+						<label for="bowl_bottom_grid">Do not include</label> <br>
+					</label> 
 
-			<div class="field">
-				<label for="bowl_colander">Colander</label> <br>
-				<input id="bowl_colander_true" name="bowl[colander]" type="radio" value="true">
-				<label for="bowl_colander">Include</label> <br>		
-				<input id="bowl_colander_false" name="bowl[colander]" type="radio" value="false">
-				<label for="bowl_colander">Do not include</label> <br>
-			</div>
+					<label>Colander</br>
+						<input id="bowl_colander_true" name="bowl[colander]" type="radio" value="true">
+						<label for="bowl_colander">Include</label> <br>		
+						<input id="bowl_colander_false" name="bowl[colander]" type="radio" value="false">
+						<label for="bowl_colander">Do not include</label> <br>
+					</label>
 
-		<div class="actions"><input name="commit" type="submit" value="Update Bowl"></div>
-
-</form>
-
+				<input name="commit" type="submit" value="Update Bowl" class = "button [tiny]" id ="bowl" method = "post">
+			</form>
+		</fieldset>
+	</div>
+</script>
+</div>
+</div>
 
 
 </script>

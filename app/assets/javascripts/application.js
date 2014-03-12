@@ -30,15 +30,15 @@ $(document).ready(function() {
 				console.log(data);
 				var index = 0;
 				for (var i=0; i < data.results.length; i++) {
-				// loop over data.results {
 					var foo = ich.bowls(data.results[index]);
 					index += 1;
-					$("div.row").append(foo);
+					$("div#bowl-number").append(foo);
 				 }
 			}
 		})
 	});
 })
+
 
 
 

@@ -1,27 +1,16 @@
-<h1>New User</h1>
-
-<%= form_for @user do |f| %>
-  <% if @user.errors.any? %>
-    <div class="error_messages">
-      <h2>Form is invalid</h2>
-      <ul>
-        <% for message in @user.errors.full_messages %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<div class="small-11 medium-9 large-9 large-centered columns" id ="new-user">
+<h4>Log in</h4>
+<div class = "panel">
+<%= form_tag sessions_path do %>
   <div class="field">
-    <%= f.label :email %>
-    <%= f.text_field :email %>
+    <%= label_tag :email %><br/>
+    <%= text_field_tag :email, params[:email] %>
   </div>
   <div class="field">
-    <%= f.label :password %>
-    <%= f.password_field :password %>
+    <%= label_tag :password %><br/>
+    <%= password_field_tag :password %>
   </div>
-  <div class="field">
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
-  </div>
-  <div class="actions"><%= f.submit %></div>
+  <%= submit_tag "Log in", :class => "button expand" %>
 <% end %>
+</div>
+</div>

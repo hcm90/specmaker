@@ -1,7 +1,10 @@
-<h2>New Specsheet</h2>
+<div class="small-11 medium-9 large-9 large-centered columns" id ="new">
+<h4>Let's build the specsheet for your new sink, mon!</h4>
 
+
+<div class ="panel">
 <%= form_for [@specsheet] do |f| %>
-	<% if @specsheet.errors.any? %>
+  <% if @specsheet.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@specsheet.errors.count, "error") %> prohibited this reservation from being saved:</h2>
 
@@ -13,15 +16,10 @@
       </div>
     <% end %>
 
-	<div class="field">
-		<%= f.label :name %> <br />
-		<%= f.text_field :name %>
-	</div>
+    <%= f.text_field :name, :placeholder => 'Enter the name of your specsheet...'%>
 
-<%= f.submit %>
-
+<%= f.submit :class => "button expand "%>
 <% end %>
-
-
-
+</div>
+</div>
 

@@ -9,7 +9,7 @@ Specmaker::Application.routes.draw do
   end
 
   resources :users, :only => [:index, :show, :new, :create]
-  resources :sessions, :only => [:create, :destroy]
+  resources :sessions, :only => [:create, :new, :destroy]
 
 
   # The priority is based upon order of creation: first created -> highest priority.

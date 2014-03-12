@@ -13,3 +13,14 @@
 
  *= require_tree .
  */
+
+#new {
+	padding-top: 15%;
+}
+#new-user {
+	padding-top: 10%;
+}
+
+#button {
+	margin-top:3%;
+}
