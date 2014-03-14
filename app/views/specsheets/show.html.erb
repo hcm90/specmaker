@@ -2,7 +2,6 @@
 
 <% @bowlcount = 0 %>
 
-
 <div class = "row" id = "comments-frame">
 	<fieldset>
 		<legend><%= "Specsheet: #{@specsheet.name}" %></legend>
@@ -70,3 +69,4 @@
   <p>If you would like to save this specsheet to a personal list <%= link_to "sign up now", new_user_path %>.</p>
  <p>Otherwise, <%= link_to "log in", new_session_path %> to save your specsheet.</p> 
 <% end %>
+

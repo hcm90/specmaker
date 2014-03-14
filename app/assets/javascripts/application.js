@@ -15,7 +15,11 @@
 //= require foundation
 //= require_tree .
 
-$(function(){ $(document).foundation(); });
+// $(function(){ $(document).foundation(); });
+
+// function handle_bowl_update() {
+
+// }
 
 $(document).ready(function() {
 	$("form.select_bowl_amt").on("submit", function(e) {
@@ -27,18 +31,82 @@ $(document).ready(function() {
 			type: "POST",
 			dataType: "json",
 			success: function(data) {
-				console.log(data);
+				// console.log(data);
 				var index = 0;
 				for (var i=0; i < data.results.length; i++) {
 					var foo = ich.bowls(data.results[index]);
 					index += 1;
-					$("div#bowl-number").append(foo);
-				 }
+					$("div#update-bowl-container").append(foo);
+					// if (index === 0) {
+					// 	$(".bowl-form legend").replaceWith("Single Bowl Measurements")
+					// }
+
+ 				}
+			 	$("div#bowl-number").prop('disabled',true);
+				$("div#bowl-number").children().prop('disabled',true);
+				$("div#bowl-number").find("#button").hide();
+				// $("form.edit_bowl").wrap("<fieldset></fieldset>");
+				// $(".bowl-form fieldset").prepend("<legend>Bowl Measurements</legend>");
+
+				var number_of_bowls = $(".bowl-form").length;
+				if (number_of_bowls === 1) {
+					$(".bowl-form").addClass("large-12 columns");
+				}
+				else if (number_of_bowls === 2) {
+					$(".bowl-form").addClass("large-6 columns");
+				}
+				else if (number_of_bowls === 3) {
+					$(".bowl-form").addClass("large-4 columns");
+				}
 			}
 		})
 	});
+
+	$("div#update-bowl-container").on("submit", function(e) {
+		e.preventDefault();
+
+		var data = [];
+		$(this).find("form").each(function(index) {
+			data[index] = $(this).serializeObject();
+		});
+		// console.log(data);
+
+		$.ajax({
+			url: $("form.edit_bowl").first().attr("action"),
+			data: { _method: "PATCH", bowls: data },
+			type: "POST",
+			dataType: "json",
+			success: function(data) {
+				// console.log(data);
+			}
+		})
+		
+
+	});
 })
 
+$.fn.serializeObject = function()
+{
+    var o = {};
+    var a = this.serializeArray();
+    $.each(a, function() {
+        if (o[this.name] !== undefined) {
+            if (!o[this.name].push) {
+                o[this.name] = [o[this.name]];
+            }
+            o[this.name].push(this.value || '');
+        } else {
+            o[this.name] = this.value || '';
+        }
+    });
+    return o;
+};
 
+// $(function() {
+//     $("div#update-bowl-container").submit(function() {
+//         $('#result').text(JSON.stringify($('form').serializeObject()));
+//         return false;
+//     });
+// });
 
 
