@@ -8,7 +8,7 @@
 			<row>
 				<h4>Bowls</h4>
 				<div class="large-6 columns">
-					<%= @specsheet.bowls.each do |bowl| %>
+					<% @specsheet.bowls.each do |bowl| %>
 					<h3><%="Bowl" %></h3>
 						<%= "Left to right:" %><br />
 						<%= "Front to back:" %><br />
@@ -18,11 +18,11 @@
 				</div>
 				<div class="large-6 columns">
 					<h3><%="#{@bowlcount + 1}" %></h3>
-						<%= "#{@bowl.left_right}" %><br />
-						<%= "#{@bowl.front_back}" %><br />
-						<%= "#{@bowl.depth}" %><br />
-						<%= "#{@bowl.bottom_grid}" %><br />
-						<%= "#{@bowl.colander}" %><br />
+						<%= "#{bowl.left_right}" %><br />
+						<%= "#{bowl.front_back}" %><br />
+						<%= "#{bowl.depth}" %><br />
+						<%= "#{bowl.bottom_grid}" %><br />
+						<%= "#{bowl.colander}" %><br />
 					<% end %>
 				</div>
 				<br>

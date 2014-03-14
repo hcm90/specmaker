@@ -34,6 +34,8 @@ class BowlsController < ApplicationController
 			bowl.left_right = v[:bowl][:left_right]
 			bowl.front_back = v[:bowl][:front_back]
 			bowl.depth = v[:bowl][:depth]
+			bowl.bottom_grid = v[:bowl][:bottom_grid]
+			bowl.colander = v[:bowl][:colander]
 			bowl.save
 		end
 		respond_to do |format|

@@ -31,7 +31,7 @@ $(document).ready(function() {
 			type: "POST",
 			dataType: "json",
 			success: function(data) {
-				// console.log(data);
+				console.log(data);
 				var index = 0;
 				for (var i=0; i < data.results.length; i++) {
 					var foo = ich.bowls(data.results[index]);
@@ -69,7 +69,7 @@ $(document).ready(function() {
 		$(this).find("form").each(function(index) {
 			data[index] = $(this).serializeObject();
 		});
-		// console.log(data);
+		console.log(data);
 
 		$.ajax({
 			url: $("form.edit_bowl").first().attr("action"),
