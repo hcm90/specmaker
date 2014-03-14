@@ -45,6 +45,9 @@ $(document).ready(function() {
 			 	$("div#bowl-number").prop('disabled',true);
 				$("div#bowl-number").children().prop('disabled',true);
 				$("div#bowl-number").find("#button").hide();
+				// $("form.edit_bowl").wrap("<fieldset></fieldset>");
+				// $(".bowl-form fieldset").prepend("<legend>Bowl Measurements</legend>");
+
 				var number_of_bowls = $(".bowl-form").length;
 				if (number_of_bowls === 1) {
 					$(".bowl-form").addClass("large-12 columns");
