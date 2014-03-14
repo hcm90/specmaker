@@ -1,3 +1,4 @@
+<h3><%= @specsheet.name %></h3>
 <div class = "row" id = "bowl-number">
 	<fieldset>
 		<legend>What type of sink are you building?</legend>
@@ -11,12 +12,15 @@
 				<%= label_tag :bowls, 'Double Bowl', :class => 'specsheet' %> 
 				<%= radio_button_tag(:bowls, 3, params[:bowls]) %> 
 				<%= label_tag :bowls, 'Triple Bowl', :class => 'specsheet' %> </br>
-			<%= f.submit :class => "button [tiny]", :id => "button"%>
+			<%= f.submit "Create bowls", :class => "button [tiny]", :id => "button"%>
 		</div>
 		<% end %>
 	</fieldset>
 </div>
 
+<div class ="row">
+<div class="large-12 columns" id="update-bowl-container"></div>
+</div>
 
 <div class = "row">
 	<fieldset>
@@ -93,37 +97,37 @@
 
 <div class="row">
 <script id="bowls" type="text/html">
-	<div class="large-4 columns">
+	<div class="bowl-form">
 		<fieldset>
 		<legend>Bowl Measurements</legend>
-			<form accept-charset="UTF-8" action="{{ url }}" class="edit_bowl" id="edit_bowl_{{ bowl }}" method="post">
+			<form accept-charset="UTF-8" action="{{ url }}" class="edit_bowl" id="edit_bowl_{{ id }}" method="post">
 			  <div style='margin:0;padding:0;display:inline'>
 				<input name='_method' type='hidden' value='patch' />
+				<input type="hidden" name="bowlId" value="{{ id }}">
 				</div>
 					<label for="bowl_left_right">Left to Right</label> <br>
-					<input id="bowl_left_right" max="32" min="8" name="bowl[left_right]" type="number">
+					<input class="bowl_left_right" max="32" min="8" name="bowl[left_right]" type="number">
 
 					<label for="bowl_front_back">Front to Back</label> <br>
-					<input id="bowl_front_back" max="25" min="8" name="bowl[front_back]" type="number">
+					<input class="bowl_front_back" max="25" min="8" name="bowl[front_back]" type="number">
 
 					<label for="bowl_depth">Depth</label> <br>
-					<input id="bowl_depth" max="15" min="3" name="bowl[depth]" type="number">
+					<input class="bowl_depth" max="15" min="3" name="bowl[depth]" type="number">
 
-					<label>Bottom Grid</br>
-						<input id="bowl_bottom_grid_true" name="bowl[bottom_grid]" type="radio" value="true">
-						<label for="bowl_bottom_grid">Include</label> </br>
-						<input id="bowl_bottom_grid_false" name="bowl[bottom_grid]" type="radio" value="false">
-						<label for="bowl_bottom_grid">Do not include</label> <br>
-					</label> 
+					<label for="bowl_depth">Bottom Grid
+				        <select name="bowl[bottom_grid]">
+				          <option value="true">Include</option>
+				          <option value="false">Do not Include</option>
+				        </select>
+				    </label>
+				    <label for "colander">Colander
+				        <select name="bowl[colander]">
+				          <option value="true">Include</option>
+				          <option value="false">Do not Include</option>
+				        </select>
+				    </label>
 
-					<label>Colander</br>
-						<input id="bowl_colander_true" name="bowl[colander]" type="radio" value="true">
-						<label for="bowl_colander">Include</label> <br>		
-						<input id="bowl_colander_false" name="bowl[colander]" type="radio" value="false">
-						<label for="bowl_colander">Do not include</label> <br>
-					</label>
-
-				<input name="commit" type="submit" value="Update Bowl" class = "button [tiny]" id ="bowl" method = "post">
+				<input name="commit" type="submit" value="Save" class = "button" id ="{{ id }}" method = "post">
 			</form>
 		</fieldset>
 	</div>

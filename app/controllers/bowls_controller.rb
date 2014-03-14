@@ -6,6 +6,10 @@ class BowlsController < ApplicationController
  	@bowl = Bowl.new
  end
 
+ def show
+ 	@bowl = bowl.find(params[:id])
+ end
+
  def create
 	if params[:bowls].present? && @specsheet.bowls.count == 0
 		number_of_bowls = params[:bowls].to_i
@@ -20,16 +24,20 @@ class BowlsController < ApplicationController
  	end
  end
 
-	def edit
-		@bowl = Bowl.find(params[:id])
-	end
+# def edit
+# 	@bowl = Bowl.find(params[:bowls][0][:bowlId])
+# end
 
 	def update
-		@bowl = Bowl.find(params[:id])
-		if @bowl.update_attributes(bowl_params)
-			redirect_to edit_specsheet_path(@specsheet)
-		else
-			redirect_to edit_specsheet_path(@specsheet)
+		bowls = params[:bowls].map do |k,v|
+			bowl = Bowl.find(v[:bowlId])
+			bowl.left_right = v[:bowl][:left_right]
+			bowl.front_back = v[:bowl][:front_back]
+			bowl.depth = v[:bowl][:depth]
+			bowl.save
+		end
+		respond_to do |format|
+			format.json {render :json => { bowls: bowls }}
 		end
 	end
 

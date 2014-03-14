@@ -1,8 +1,26 @@
-<h1>My Specsheets</h1>
+<div class="row">
+</div>
 
-
+<div class="row">
+	<div class="large-9 large-centered columns">
+<h4>My Specsheets</h4>
+<table>
+  <thead>
+    <tr>
+      <th width="200">Name</th>
+      <th width="150">Date Created</th>
+      <th width="150">Date Last Updated</th>
+    </tr>
+  </thead>
+  <tbody>
 <% @user.specsheets.each do |specsheet| %>
-<h3><%= specsheet.name %> </h3>
+    <tr>
+      <td><%= link_to specsheet.name specsheet_path(specsheet)%> </td>
+      <td><%= specsheet.created_at %> </td>
+      <td><%= specsheet.updated_at %> </td>
+    </tr>
 <% end %>
-
-
+  </tbody>
+</table>
+</div>
+</div>

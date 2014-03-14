@@ -53,7 +53,10 @@ class SpecsheetsController < ApplicationController
  		 		format.html { redirect_to edit_specsheet_path(@specsheet) }
  		 		format.json { render json: { results: 
 	 				@all_bowls.map do |b| 
-	 					{url: specsheet_bowl_path(@specsheet, b)}
+	 					{
+	 					url: specsheet_bowl_path(@specsheet, b), 
+	 					id: b.id
+	 					}
 	 				end
 	 			} }
  		 	end

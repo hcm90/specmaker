@@ -5,7 +5,7 @@ Specmaker::Application.routes.draw do
   get "signup" => "users#new", :as => "signup"
 
   resources :specsheets do 
-    resources :bowls, :except => [:show, :index]
+    resources :bowls, :except => [:index]
   end
 
   resources :users, :only => [:index, :show, :new, :create]

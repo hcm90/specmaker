@@ -1,0 +1,19 @@
+<% if @specsheet.bowls.any? %>
+<div class ="row">
+	<% @specsheet.bowls.each do |bowl| %>
+	<div class="large-4 columns">
+	<fieldset>
+		<legend>Bowl</legend>
+		<ul class = "no-bullet">
+			<li>Left-right: <%= bowl.left_right %></li>
+			<li>Front-back: <%= bowl.front_back %></li>
+			<li>Depth: <%= bowl.depth %></li>
+			<li>Bottom grid: <%= bowl.bottom_grid %></li>
+			<li>Colander: <%= bowl.colander %></li>
+		</ul>
+	</fieldset>
+	</div>
+
+	<% end %>
+	</div>
+<% end %>
