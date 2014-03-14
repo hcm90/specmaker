@@ -5,6 +5,9 @@ class SpecsheetsController < ApplicationController
 	end
 
 	def show
+		if !logged_in?
+			session[:return_to_specsheet] = request.url
+		end
 		@specsheet = Specsheet.find(params[:id])
 		@bowl = @specsheet.bowls.all
 	end
@@ -29,6 +32,8 @@ class SpecsheetsController < ApplicationController
 	end
 
 	def edit
+
+
 		@specsheet = Specsheet.find(params[:id])
 		@bowls = @specsheet.bowls.all
 	end
@@ -37,6 +42,9 @@ class SpecsheetsController < ApplicationController
 		@specsheet = Specsheet.find(params[:id])
 		
 		if @specsheet.update_attributes(specsheet_params)
+			if current_user
+				@specsheet.user_id = current_user.id
+			end
 			if params[:bowls].present? && @specsheet.bowls.count == 0
 				number_of_bowls = params[:bowls].to_i
 				@all_bowls = []
@@ -50,7 +58,7 @@ class SpecsheetsController < ApplicationController
  	
  		 	end
  		 	respond_to do |format|
- 		 		format.html { redirect_to edit_specsheet_path(@specsheet) }
+ 		 		format.html { redirect_to specsheet_path(@specsheet) }
  		 		format.json { render json: { results: 
 	 				@all_bowls.map do |b| 
 	 					{url: specsheet_bowl_path(@specsheet, b)}
@@ -59,7 +67,7 @@ class SpecsheetsController < ApplicationController
  		 	end
 		else
 			respond_to do |format|
-				format.html { redirect_to edit_specsheet_path(@specsheet) }
+				format.html { redirect_to specsheet_path(@specsheet) }
 				format.json { render json: { url: specsheet_bowl_path(@specsheet, @bowl) } }
 			end
 		end
@@ -73,7 +81,7 @@ class SpecsheetsController < ApplicationController
 
 	private
 	def specsheet_params
-		params.require(:specsheet).permit(:name, :number_of_bowls, :installation, :corner_radius, :drain_location, :drain_size, :divider)
+		params.require(:specsheet).permit(:name, :number_of_bowls, :installation, :corner_radius, :drain_location, :drain_size, :divider, :user_id)
 	end
 
 	# def load_bowls

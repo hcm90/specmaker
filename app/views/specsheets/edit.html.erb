@@ -22,7 +22,28 @@
 	<fieldset>
 	<legend>Configuration</legend>
 		<%= form_for @specsheet do |f| %>
+		<% if current_user %>
+			<%= f.hidden_field :user_id, :value => current_user.id %>
+		<% end %>
 			<row>
+			<div class="panel callout radius" id = "error_installation">
+  				<p>Note: installation type has been set to 'undermount'. For an overmount installation, corner radius must be set to '0mm'.</p>
+			</div>
+			<div class="panel callout radius" id = "error_corner_radius_installation">
+  				<p>Note: corner radius has been set to '0mm'. For a larger corner radius, installation must be set to 'undermount'.</p>
+			</div>
+			<div class="panel callout radius" id = "error_corner_radius_lower_divider">
+  				<p>Note: corner radius has been set to '0mm'. For a larger corner radius, divider must be set to 'normal'. Thin dividers can accept a corner radius up to 10mm.</p>
+			</div>
+			<div class="panel callout radius" id = "error_corner_radius_thin_divider">
+  				<p>Note: corner radius has been set to '0mm'. For a corner radius larger than 10mm, divider must be set to 'normal'.</p>
+			</div>
+			<div class="panel callout radius" id = "error_divider_lower">
+  				<p>Note: divider has been set to 'normal'. For a lower divider, corner radius must be set to '0mm'. Thin dividers can accept a corner radius up to 10mm.</p>
+			</div>
+			<div class="panel callout radius" id = "error_divider_thin">
+  				<p>Note: divider has been set to 'normal'. For a thin divider, corner radius must be set to '0mm' or '10mm'.</p>
+			</div>
 			<div class="large-4 columns">
 				<div class="field">
 					<%= f.label :installation, 'Installation' %> <br />
@@ -82,14 +103,32 @@
 					<%= f.label :divider, 'Lower/Thin' %> <br />
 				</div>
 			</row>
+
+
+
+	</fieldset>
+</div>
+
+<div class = "row" id = "comments-frame">
+	<fieldset>
+		<legend>Comments</legend>
+			<row>
+				<div class="large-12 columns">
+					<%= f.label :comment, 'Comments' %> <br />	
+					<%= f.text_field :comment, :id => "comment" %>
+				</div>
+			</row>
+
+	</fieldset>
+</div>
+
+
 			<row>
 				<div class="large-12 columns" id ="button">
 				<%= f.submit :class => "button" %>
 				</div>
 			</row>
 		<% end %>
-	</fieldset>
-</div>
 
 <div class="row">
 <script id="bowls" type="text/html">

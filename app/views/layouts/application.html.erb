@@ -20,6 +20,7 @@
     <div class="large-9 columns">
       <ul class="inline-list right">
         <% if current_user %>
+          <li><%= link_to "My specsheets", user_path(current_user) %></li>
           <li>Signed in as <%= link_to current_user.email, user_path(current_user) %></li>
           <li><%= link_to "Log out", session_path("current"), :method => :delete %></li>
         <% else %>

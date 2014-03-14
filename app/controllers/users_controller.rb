@@ -14,7 +14,13 @@ class UsersController < ApplicationController
 	def create
 		@user = User.new(user_params)
 		if @user.save
-        	redirect_to new_session_path, :notice => "Signed Up!"
+        	auto_login(@user)
+        	if session[:return_to_specsheet]
+        		redirect_to session[:return_to_specsheet]
+        		session[:return_to_specsheet] = nil
+        	else
+        		redirect_to user_path(@user), :notice => "Signed Up!"
+        	end
       	else
         	render :new
       end
